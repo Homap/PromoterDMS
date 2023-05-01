@@ -1,0 +1,25 @@
+{
+    "id": "79C0E1D4",
+    "path": "~/Dropbox/projects/sortseq_yeast/code/sort_seq/mutation_types.R",
+    "project_path": "mutation_types.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1681874933379.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "55,237",
+        "scrollLine": "22"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1681904394,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1681904394340,
+    "read_only": false,
+    "read_only_alternatives": []
+}

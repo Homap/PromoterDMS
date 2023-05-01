@@ -1,0 +1,12 @@
+A_C	2
+A_G	17
+A_T	4
+C_A	2
+C_G	4
+C_T	20
+G_A	17
+G_C	1
+G_T	5
+T_A	6
+T_C	18
+T_G	4

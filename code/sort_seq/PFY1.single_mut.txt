@@ -1,0 +1,11 @@
+A_C	3
+A_G	9
+A_T	2
+C_A	2
+C_G	2
+C_T	13
+G_A	4
+G_C	3
+T_A	5
+T_C	6
+T_G	4

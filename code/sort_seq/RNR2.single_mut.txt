@@ -1,0 +1,12 @@
+A_C	2
+A_G	26
+A_T	7
+C_A	6
+C_G	7
+C_T	23
+G_A	17
+G_C	4
+G_T	2
+T_A	4
+T_C	19
+T_G	3

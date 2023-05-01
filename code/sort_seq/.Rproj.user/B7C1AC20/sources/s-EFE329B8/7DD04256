@@ -1,0 +1,25 @@
+{
+    "id": "7DD04256",
+    "path": "~/Dropbox/projects/sortseq_yeast/sort_seq/pnas.1902823116.sd04.R",
+    "project_path": "pnas.1902823116.sd04.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1680892987997.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "213,58",
+        "scrollLine": "208"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1680893054,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1680893054969,
+    "read_only": false,
+    "read_only_alternatives": []
+}
