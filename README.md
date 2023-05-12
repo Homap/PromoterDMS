@@ -1,4 +1,4 @@
-# Sort-seq massively parallel reporter assay for the effect of cis-regulatory mutations in yeast
+# Sort-seq massively parallel reporter assay for the effect of *cis*-regulatory mutations in yeast
 
 ## Project overview
 
