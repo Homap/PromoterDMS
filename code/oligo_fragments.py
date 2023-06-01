@@ -6,19 +6,8 @@ from fasta import readfasta
 from chunks import chunks
 
 """
-This script describes design of oligonucleotides to be synthesized by 
-TwistBiosciences with the goal of assembling the fragments using the
-Golden Gate Assembly method.
-"""
-
-"""
-We need to ideally also simulate the PCR of sequences differing by 1 base 
-To see the challenges that exist in doing that.
-"""
-
-"""
-Start with the simplest situation but in the final function, the best solution
-is to get to determine the size of the oligonucleotide as well.
+This script describes design of oligonucleotides with the goal of 
+assembling the fragments using the Gibson Assembly method.
 """
 
 #*******************************s
@@ -82,14 +71,6 @@ def oligo_design(promoter_sequence, fragment_len=150):
             else:
                 pass
     return([mutated_oligo_dict, WT_oligo_dict])
-
-
-promoter_f = open("../data/promoters/promoter_sequences.fasta", "r")
-promoter_dict = readfasta(promoter_f)
-
-mutated_WT_oligo_dict = {}
-for promoter in promoter_dict.keys():
-    mutated_WT_oligo_dict[promoter] = oligo_design(promoter_dict[promoter])
 #*********************************************************************************************
 def mutate_promoter(promoter):
     """
@@ -132,53 +113,6 @@ def mutate_promoter(promoter):
                     mutated_seq = "".join(promoter_base_list)
                     mutated_promoter_dict[mutated_seq_key] = mutated_seq
     return(mutated_promoter_dict)
-
-#*********************************************************************************************
-def scan_recog_motif(mutated_promoter_dict, RE):
-    """
-    Scans sequence to see if it contains restriction enzyme
-    recognition motif.
-    """
-    recog_dict = {}
-    for mutation in mutated_promoter_dict.keys():
-        sequence = Seq(mutated_promoter_dict[mutation])
-        recog_site = RE.search(sequence)
-        if len(recog_site) > 0:
-            if not mutation in recog_dict.keys():
-                recog_dict[mutation] = [recog_site]
-            else:
-                recog_dict[mutation].append(recog_site)
-        else:
-            print("No recognition site was detected")
-    return(recog_dict)
-#*********************************************************************************************
-def split_promoter(mutated_promoter_dict, recog_dict, fixed_len = True, oligo_len, start, max_len, min_len):
-    """
-    Function to split the promoter sequence into fragments
-    We can split the promoter into fixed fragment length but strict length size could not be useful since
-    the sequence might not be optimal in terms of the future assembly method. It is best to specify a minimum and maximum
-    for the length of the fragment with a start position and then check the sequence for compatibility for recognition site.
-    Also evaluate   
-    """
-    # note!: Adjust the script for when one of the pieces is very short.
-    mutated_fragment_dict = {}
-    if fixed_len:
-        for mutation in mutated_promoter_dict.keys():
-            if not mutation in recog_dict.keys():
-                fragments = chunks(mutated_promoter_dict[mutation], oligo_len)
-                for index, item in enumerate(fragments):
-                    # Think about few more bases
-                    #fragment_dict = {"fragment1" : RNR1[0:237], "fragment2" : RNR1[237-4:2*237], "fragment3" : RNR1[(2*237)-4:3*237], "fragment4" : RNR1[(3*237)-4:4*237]}
-                    fragment_ID = mutation + "_F" + str(index+1)
-                    mutated_fragment_dict[fragment_ID] = item
-    else:
-        min_end = start+min_len
-        max_end = start+max_len
-        for end in range(min_end, max_end):
-            new_oligo_len = 
-        oligo_range = [[start, min_end], [start, max_end]]
-
-    return(mutated_fragment_dict)
 #*********************************************************************************************
 
 # Gibson assembly is a protocol for joining DNA fragments in-vitro by tratment with a mixture of T5 exconuclease,
@@ -186,5 +120,9 @@ def split_promoter(mutated_promoter_dict, recog_dict, fixed_len = True, oligo_le
 # fragments to be joined. The T5 exonuclease chews back each fragment in the 5'-3' direction so that the remaining 3' 
 # single stranded overhangs can anneal. Gaps are filled and nicks sealed by polymerase and ligase. 
 
+promoter_f = open("../data/promoters/promoter_sequences.fasta", "r")
+promoter_dict = readfasta(promoter_f)
 
-
+mutated_WT_oligo_dict = {}
+for promoter in promoter_dict.keys():
+    mutated_WT_oligo_dict[promoter] = oligo_design(promoter_dict[promoter])
