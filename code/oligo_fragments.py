@@ -129,3 +129,11 @@ promoter_dict = readfasta(promoter_f)
 mutated_WT_oligo_dict = {}
 for promoter in promoter_dict.keys():
     mutated_WT_oligo_dict[promoter] = oligo_design(promoter_dict[promoter])
+
+
+for gene in mutated_WT_oligo_dict.keys():
+    for oligo_m in mutated_WT_oligo_dict[gene][0]['mutated'].keys():
+        oligo_to_mutate = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['oligo']
+        mutated_oligo_list = mutate_oligo(oligo_to_mutate)
+        for mutation in mutated_oligo_list:
+            print(gene, oligo_m, mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m], mutation)
