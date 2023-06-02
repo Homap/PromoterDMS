@@ -1,6 +1,4 @@
 import sys
-from Bio.Restriction import *
-from Bio.Seq import Seq
 from revcomp import revcomp
 from fasta import readfasta
 from chunks import chunks
@@ -21,9 +19,11 @@ nuc_dict = {'A': ['C', 'G', 'T'],
 #*********************************************************************************************
 # Specify the inputs
 #*********************************************************************************************
-promoter = open(sys.argv[1], "r")
-plasmid = open(sys.argv[2], "r")
+promoter_f = open("../data/promoters/promoter_sequences.fasta", "r")
+plasmid_f = open("../data/pggaselect-yfpins.fasta", "r")
 
+promoter_dict = readfasta(promoter_f)
+plasmid_dict = readfasta(plasmid_f)
 #*********************************************************************************************
 # Definition of functions 
 #*********************************************************************************************
@@ -123,9 +123,6 @@ def mutate_oligo(oligo_seq):
 # fragments to be joined. The T5 exonuclease chews back each fragment in the 5'-3' direction so that the remaining 3' 
 # single stranded overhangs can anneal. Gaps are filled and nicks sealed by polymerase and ligase. 
 
-promoter_f = open("../data/promoters/promoter_sequences.fasta", "r")
-promoter_dict = readfasta(promoter_f)
-
 mutated_WT_oligo_dict = {}
 for promoter in promoter_dict.keys():
     mutated_WT_oligo_dict[promoter] = oligo_design(promoter_dict[promoter])
@@ -165,4 +162,4 @@ for gene in mutated_WT_oligo_dict.keys():
                 wildtype_oligo2 = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo_2']
                 print(gene, oligo_m, overlap1, mutation, overlap2, HO_arm_W, YFP_arm_W, wildtype_oligo1, wildtype_oligo2)
 
-# 
+ 
