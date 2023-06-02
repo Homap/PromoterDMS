@@ -130,27 +130,39 @@ mutated_WT_oligo_dict = {}
 for promoter in promoter_dict.keys():
     mutated_WT_oligo_dict[promoter] = oligo_design(promoter_dict[promoter])
 
+# Add coordinate of the mutation
 for gene in mutated_WT_oligo_dict.keys():
     for oligo_m in mutated_WT_oligo_dict[gene][0]['mutated'].keys():
+        oligo_base = '_'.join(oligo_m.split("_")[0:2])
+        oligo_w = oligo_base + "_W"
         if oligo_m.split("_")[1] == "1":
             oligo_to_mutate = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['oligo']
             mutated_oligo_list = mutate_oligo(oligo_to_mutate)
             for mutation in mutated_oligo_list:
                 HO_arm = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['HO_arm']
                 overlap = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['overlap']
-                print(gene, oligo_m, HO_arm, mutation, overlap)
+                YFP_arm_W = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['YFP_arm']
+                wildtype_oligo = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo']
+                print(gene, oligo_m, HO_arm, mutation, overlap, YFP_arm_W, wildtype_oligo)
         elif oligo_m.split("_")[1] == "last":
             oligo_to_mutate = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['oligo']
             mutated_oligo_list = mutate_oligo(oligo_to_mutate)
             for mutation in mutated_oligo_list:
                 YFP_arm = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['YFP_arm']
                 overlap = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['overlap']
-                print(gene, oligo_m, YFP_arm, mutation, overlap)
+                HO_arm_W = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['HO_arm']
+                wildtype_oligo = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo']                
+                print(gene, oligo_m, YFP_arm, mutation, overlap, HO_arm_W, wildtype_oligo)
         else:
             oligo_to_mutate = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['oligo']
             mutated_oligo_list = mutate_oligo(oligo_to_mutate)
             for mutation in mutated_oligo_list:
                 overlap1 = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['overlap1']
                 overlap2 = mutated_WT_oligo_dict[gene][0]['mutated'][oligo_m]['overlap2']
-                print(gene, oligo_m, overlap1, mutation, overlap2)
+                HO_arm_W = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['HO_arm']
+                YFP_arm_W = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['YFP_arm']
+                wildtype_oligo1 = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo_1']
+                wildtype_oligo2 = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo_2']
+                print(gene, oligo_m, overlap1, mutation, overlap2, HO_arm_W, YFP_arm_W, wildtype_oligo1, wildtype_oligo2)
 
+# 
