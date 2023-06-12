@@ -4,8 +4,9 @@ from fasta import readfasta
 from chunks import chunks
 
 """
-This script describes design of oligonucleotides with the goal of 
-assembling the fragments using the Gibson Assembly method.
+This script describes design of mutated oligonucleotides with the goal of nassembling the fragments using the Gibson Assembly method.
+To add: Wild-type fragments here have YFP and HO homology arms. To produce these fragments by PCR, we cannot have that, rather
+the plasmid primers should contain promoter-specific homology arms to get linearised and then use those arms for the Gibson assembly.
 """
 
 #*******************************s
@@ -116,8 +117,7 @@ def mutate_oligo(oligo_seq):
         else:
             print("Error: Illigal character")
     return(mutated_promoter_list)
-#*********************************************************************************************
-
+#*********************************************************************************************************************
 # Gibson assembly is a protocol for joining DNA fragments in-vitro by tratment with a mixture of T5 exconuclease,
 # DNA polymerase and Taq DNA ligase. Gibson assembly requires 20-40 bp of perfect homology between 3' and 5' ends for 
 # fragments to be joined. The T5 exonuclease chews back each fragment in the 5'-3' direction so that the remaining 3' 
@@ -161,5 +161,3 @@ for gene in mutated_WT_oligo_dict.keys():
                 wildtype_oligo1 = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo_1']
                 wildtype_oligo2 = mutated_WT_oligo_dict[gene][1]['wildtype'][oligo_w]['oligo_2']
                 print(gene, oligo_m, overlap1, mutation, overlap2, HO_arm_W, YFP_arm_W, wildtype_oligo1, wildtype_oligo2)
-
- 
